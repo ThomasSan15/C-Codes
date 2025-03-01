@@ -38,26 +38,25 @@ void MorseTranslate(string &word){ //funcion que traduce una palabra en morse
     string result; //cadena donde almacenaremos el resultado
     string letter; //Cadena donde guardaremos los caracteres en morse
 
-    for(unsigned int i = 0; i < word.size(); i++){ //For que recorre toda la cadena original escrita en morse
-      
+ for(unsigned int i = 0; i < word.size(); i++){ //For que recorre toda la cadena original escrita en morse
+    if(word.at(i) != ' ') {
+
       if(i + 1 < word.size() && word.at(i + 1) == ' ' && i + 2 < word.size() && word.at(i + 2) == ' '){
         letter.push_back(word.at(i));
         result.push_back(MorseToLetter(letter)); //Almacenamos en result el caracter que nos retorne la funcion
         result.push_back(' '); //Si se encuentra con un doble espacio valido, agrega un espacio
         letter.clear(); //Limpiamos la cadena
-        i += 2; //Avanzamos 2 posiciones para no almacenar los espacios
       }
        else if(i + 1 < word.size() && word.at(i + 1) == ' ') { //Si se encuentra con solo un espacio significa un cambio de letra
         letter.push_back(word.at(i));
         result.push_back(MorseToLetter(letter)); //Almacenamos en result el caracter que nos retorne la funcion
         letter.clear(); //Limpiamos la cadena
-        i++; //aumentamos un valor para que no almacene el espacio 
       }else{
       letter.push_back(word.at(i));
       if(i + 1 == word.size()){ //Si llegamos al final de la cadena, traducimos el último caracter
         result.push_back(MorseToLetter(letter));
     }
-      }
+      }}
     }
     word = result;
 }
